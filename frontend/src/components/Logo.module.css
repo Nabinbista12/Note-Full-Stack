@@ -1,0 +1,18 @@
+.logoContainer {
+  height: 5rem;
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  font-size: 3rem;
+  color: black;
+  text-decoration: none;
+  margin-left: 2rem;
+}
+
+@media (max-width: 800px) {
+  .logo {
+    font-size: 2rem;
+  }
+}

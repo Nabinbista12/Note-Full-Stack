@@ -1,0 +1,62 @@
+.homeContainer {
+  column-width: 20rem;
+  column-gap: 2rem;
+  padding: 1rem 2rem;
+}
+
+.card {
+  padding: 10px;
+  margin-bottom: 2rem;
+  break-inside: avoid;
+  border-radius: 1rem;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.344);
+}
+
+.card > * {
+  color: black;
+  text-decoration: none;
+}
+
+.cardNav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title {
+  display: block;
+  width: 60%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cardDelete {
+  background-color: transparent;
+  border: none;
+  position: relative;
+  z-index: 1;
+}
+
+.createdDate {
+  margin-bottom: 1rem;
+}
+
+.noteContainer li {
+  list-style: none;
+  margin-left: 1rem;
+  list-style-type: num;
+}
+
+.noteContainer li span {
+  width: 100%;
+  vertical-align: top;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}

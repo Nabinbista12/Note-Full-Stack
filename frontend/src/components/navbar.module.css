@@ -1,0 +1,102 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 3rem;
+  height: 5rem;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.8);
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  background-color: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+  margin-bottom: 1rem;
+}
+
+.rightNavbar {
+  display: flex;
+  gap: 3rem;
+}
+
+.rightNavbar > * {
+  font-size: 2rem;
+  color: black;
+  text-decoration: none;
+}
+
+.btn {
+  outline: none;
+  border: none;
+  background-color: transparent;
+  font-weight: 100;
+  font-size: 1.8rem;
+}
+
+.menu {
+  display: none;
+}
+
+@media (max-width: 800px) {
+  .link {
+    display: none;
+  }
+
+
+  .menu {
+    display: block;
+  }
+
+  .menuLogo {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    z-index: 10;
+  }
+
+  .menuOption {
+    height: fit-content;
+    width: 15rem;
+    background-color: rgb(204, 178, 226);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    top: 2.5rem;
+    left: 7rem;
+    padding-top: 4.5rem;
+    padding-left: 1rem;
+  }
+
+  .menuLink {
+    color: black;
+    text-decoration: none;
+    width: 80%;
+    display: flex;
+    align-items: center;
+    font-size: 1.4rem;
+    height: 3rem;
+    color: black;
+    text-decoration: none;
+    padding-left: 1rem;
+  }
+
+  .menuLink a {
+    color: black;
+    text-decoration: none;
+    font-size: 1.4rem;
+  }
+
+  .menuBtn {
+    border: none;
+    outline: none;
+    background-color: transparent;
+    font-size: 1.4rem;
+  }
+
+  .menuLink:hover {
+    background-color: rgba(255, 255, 255, 0.201);
+    border-radius: 1rem;
+  }
+
+
+
+}
