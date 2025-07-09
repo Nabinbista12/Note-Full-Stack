@@ -18,7 +18,8 @@ const dbUrl = process.env.DB_URL;
 app.use(
   cors({
     credentials: true,
-    origin: "http://localhost:5173",
+    // origin: "http://localhost:5173",
+    origin: "https://note-nfsc.onrender.com",
     methods: ["GET", "POST", "PATCH", "DELETE"],
   })
 );
