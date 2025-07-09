@@ -19,7 +19,7 @@ app.use(
   cors({
     credentials: true,
     // origin: "http://localhost:5173",
-    origin: "https://note-nfsc.onrender.com",
+    origin: "https://notefrontend-vp84.onrender.com",
     methods: ["GET", "POST", "PATCH", "DELETE"],
   })
 );
