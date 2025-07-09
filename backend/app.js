@@ -1,9 +1,10 @@
 import dotenv from "dotenv";
-dotenv.config()
+dotenv.config();
 
 import express, { urlencoded } from "express";
 import { connect } from "mongoose";
 import session from "express-session";
+import MongoStore from "connect-mongo";
 import cors from "cors";
 
 import userRouter from "./routes/user.routes.js";
@@ -12,16 +13,7 @@ import cookieRouter from "./routes/cookie.routes.js";
 
 const app = express();
 const port = process.env.PORT;
-
-const sessionOptions = {
-  secret: "secret_token",
-  resave: false,
-  saveUninitialized: true,
-  cookie: {
-    maxAge: 1000 * 60 * 60 * 24,
-    httpOnly: true,
-  },
-};
+const dbUrl = process.env.DB_URL;
 
 app.use(
   cors({
@@ -30,12 +22,9 @@ app.use(
     methods: ["GET", "POST", "PATCH", "DELETE"],
   })
 );
-app.use(session(sessionOptions));
 
 app.use(express.json());
 app.use(urlencoded({ extended: true }));
-
-const dbUrl = process.env.DB_URL;
 
 main()
   .then(() => {
@@ -50,9 +39,34 @@ async function main() {
   await connect(dbUrl);
 }
 
+const store = MongoStore.create({
+  mongoUrl: dbUrl,
+  crypto: {
+    secret: process.env.SECRET,
+  },
+  touchAfter: 24 * 3600,
+});
+
+store.on("error", () => {
+  console.log("Error in Mongo SESSION STORE", err);
+});
+
+const sessionOptions = {
+  store,
+  secret: process.env.SECRET,
+  resave: false,
+  saveUninitialized: true,
+  cookie: {
+    maxAge: 1000 * 60 * 60 * 24,
+    httpOnly: true,
+  },
+};
+
+app.use(session(sessionOptions));
+
 app.use("/api/v1/user", userRouter);
 app.use("/api/v1/note", noteRouter);
-app.use("/api/v1/cookie", cookieRouter)
+app.use("/api/v1/cookie", cookieRouter);
 
 app.get("/", (req, res) => {
   res.send("working");
