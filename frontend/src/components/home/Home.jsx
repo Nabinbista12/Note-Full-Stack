@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import Navbar from "../navbar";
+import Navbar from "../Navbar";
 import axios from "axios";
 import styles from "./Home.module.css";
 import dayjs from "dayjs";
