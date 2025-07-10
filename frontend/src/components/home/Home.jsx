@@ -15,7 +15,7 @@ export default function Home() {
   useEffect(() => {
     const getAllNotes = async () => {
       try {
-        const res = await axios.get(`${server.url}/api/v1/note/`);
+        const res = await axios.get(`${server.url}/api/v1/note`);
         // console.log((res.data.notes).reverse());
         setNotes((res.data.notes).reverse());
       } catch (err) {
