@@ -22,7 +22,9 @@ export default function View() {
   useEffect(() => {
     let fetchNote = async () => {
       try {
-        let response = await axios.get(`${server.url}/api/v1/note/view/${id}`);
+        let response = await axios.get(`${server.url}/api/v1/note/view/${id}`, {
+          withCredentials: true,
+        });
         console.log(response.data.notes);
         setNote({
           _id: response.data.notes._id,
@@ -51,14 +53,17 @@ export default function View() {
     const updatedNote = [...note.notes];
     updatedNote[idx] = e.target.value;
     setNote((curr) => {
-      return { ...curr, notes: updatedNote.filter(item => item!= null) };
+      return { ...curr, notes: updatedNote.filter((item) => item != null) };
     });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      let response = await axios.patch(`${server.url}/api/v1/note/view/${id}/edit`, note);
+      let response = await axios.patch(
+        `${server.url}/api/v1/note/view/${id}/edit`,
+        note
+      );
       console.log(response);
       alert("Successfully edited");
     } catch (err) {
@@ -118,7 +123,9 @@ export default function View() {
           <button className={styles.btnSubmit}>Edit</button>
         </form>
 
-        <button className={styles.btnCount} onClick={incCount}>+</button>
+        <button className={styles.btnCount} onClick={incCount}>
+          +
+        </button>
 
         {/* <div>
           <p>{note.title}</p>

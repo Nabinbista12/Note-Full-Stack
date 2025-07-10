@@ -25,10 +25,12 @@ export default function Create() {
     e.preventDefault();
     try {
       console.log(formData.notes);
-      await axios.post(`${server.url}/api/v1/note/create`, formData);
+      await axios.post(`${server.url}/api/v1/note/create`, formData, {
+        withCredentials: true,
+      });
       navigate("/home");
     } catch (err) {
-      alert("Please don't leave the middle area blank.")
+      alert("Please don't leave the middle area blank.");
       console.log(err);
     }
   };
@@ -41,7 +43,7 @@ export default function Create() {
     setCount((curr) => curr - 1);
     const deletedNote = [...formData.notes];
     deletedNote[idx] = e.target.value;
-    setFormData({...formData, notes: deletedNote});
+    setFormData({ ...formData, notes: deletedNote });
   };
 
   const handleNoteChange = (e, idx) => {

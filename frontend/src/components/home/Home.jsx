@@ -15,9 +15,11 @@ export default function Home() {
   useEffect(() => {
     const getAllNotes = async () => {
       try {
-        const res = await axios.get(`${server.url}/api/v1/note`);
+        const res = await axios.get(`${server.url}/api/v1/note`, {
+          withCredentials: true,
+        });
         // console.log((res.data.notes).reverse());
-        setNotes((res.data.notes).reverse());
+        setNotes(res.data.notes.reverse());
       } catch (err) {
         console.log(err);
       }
@@ -28,7 +30,9 @@ export default function Home() {
   const deleteNote = async (id) => {
     try {
       console.log(id);
-      const res = await axios.delete(`${server.url}/api/v1/note/delete/${id}`);
+      const res = await axios.delete(`${server.url}/api/v1/note/delete/${id}`, {
+        withCredentials: true,
+      });
       console.log(res);
       setNotes((prevNotes) => prevNotes.filter((note) => note._id !== id));
       alert(res.data.message);
@@ -75,7 +79,11 @@ export default function Home() {
                 </p>
                 <ul className={styles.noteContainer}>
                   {val.notes.map((note, index) => {
-                    return <li key={index}><span>{note}</span></li>;
+                    return (
+                      <li key={index}>
+                        <span>{note}</span>
+                      </li>
+                    );
                   })}
                 </ul>
                 {/* <p>{val.userId}</p> */}
