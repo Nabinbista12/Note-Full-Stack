@@ -4,6 +4,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import styles from "./Create.module.css";
 import clsx from "clsx";
+import server from "../../environment";
 
 export default function Create() {
   const [formData, setFormData] = useState({
@@ -24,7 +25,7 @@ export default function Create() {
     e.preventDefault();
     try {
       console.log(formData.notes);
-      await axios.post("/v1/note/create", formData);
+      await axios.post(`${server.url}/api/v1/note/create`, formData);
       navigate("/home");
     } catch (err) {
       alert("Please don't leave the middle area blank.")

@@ -6,6 +6,7 @@ import styles from "./Home.module.css";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import TimeAgo from "react-timeago";
+import server from "../../environment";
 
 export default function Home() {
   dayjs.extend(relativeTime);
@@ -14,7 +15,7 @@ export default function Home() {
   useEffect(() => {
     const getAllNotes = async () => {
       try {
-        const res = await axios.get("/v1/note/");
+        const res = await axios.get(`${server.url}/api/v1/note/`);
         // console.log((res.data.notes).reverse());
         setNotes((res.data.notes).reverse());
       } catch (err) {
@@ -27,7 +28,7 @@ export default function Home() {
   const deleteNote = async (id) => {
     try {
       console.log(id);
-      const res = await axios.delete(`/v1/note/delete/${id}`);
+      const res = await axios.delete(`${server.url}/api/v1/note/delete/${id}`);
       console.log(res);
       setNotes((prevNotes) => prevNotes.filter((note) => note._id !== id));
       alert(res.data.message);

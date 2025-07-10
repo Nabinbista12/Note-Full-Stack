@@ -34,6 +34,7 @@ export default function SignUp() {
     console.log(success);
     if (success) {
       navigate("/home");
+      console.log(e);
     } else {
       setErr("Signup failed. Please check you credentials");
     }

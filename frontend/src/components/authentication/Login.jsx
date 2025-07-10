@@ -24,6 +24,8 @@ export default function Login() {
     const success = await userLogin(formData);
     if (success) {
       navigate("/home", { replace: true });
+    } else {
+      alert("User not found.")
     }
   };
 

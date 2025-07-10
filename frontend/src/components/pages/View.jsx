@@ -4,6 +4,7 @@ import styles from "./View.module.css";
 import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import clsx from "clsx";
+import server from "../../environment";
 
 export default function View() {
   const ref = useRef(null);
@@ -21,7 +22,7 @@ export default function View() {
   useEffect(() => {
     let fetchNote = async () => {
       try {
-        let response = await axios.get(`/v1/note/view/${id}`);
+        let response = await axios.get(`${server.url}/api/v1/note/view/${id}`);
         console.log(response.data.notes);
         setNote({
           _id: response.data.notes._id,
@@ -57,7 +58,7 @@ export default function View() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      let response = await axios.patch(`/v1/note/view/${id}/edit`, note);
+      let response = await axios.patch(`${server.url}/api/v1/note/view/${id}/edit`, note);
       console.log(response);
       alert("Successfully edited");
     } catch (err) {
