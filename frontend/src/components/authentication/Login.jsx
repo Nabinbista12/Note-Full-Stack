@@ -63,6 +63,7 @@ export default function Login() {
               value={formData.password}
               onChange={onChangeValue}
               placeholder="Enter password"
+              autoComplete="current-password"
             />
           </div>
           <div className={styles.submit}>

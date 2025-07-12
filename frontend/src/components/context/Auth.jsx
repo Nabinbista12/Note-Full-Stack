@@ -1,7 +1,7 @@
 import axios from "axios";
 import httpStatus from "http-status";
 import { createContext, useContext, useEffect, useState } from "react";
-import server from "../../environment";
+import { server } from "../../environment";
 
 export const AuthContext = createContext();
 
@@ -36,9 +36,13 @@ export const AuthProvider = ({ children }) => {
   const userSignUp = async (formData) => {
     setLoading(true);
     try {
-      const response = await axios.post(`${server.url}/api/v1/user/register`, formData, {
-        withCredentials: true,
-      });
+      const response = await axios.post(
+        `${server.url}/api/v1/user/register`,
+        formData,
+        {
+          withCredentials: true,
+        }
+      );
       if (response.status == httpStatus.OK) {
         setIsAuthenticated(true);
         setUser(response.data.username);
@@ -58,15 +62,19 @@ export const AuthProvider = ({ children }) => {
       setUser("");
       setLoading(false);
       return false;
-    } 
+    }
   };
 
   const userLogin = async (formData) => {
     setLoading(true);
     try {
-      const response = await axios.post(`${server.url}/api/v1/user/login`, formData, {
-        withCredentials: true,
-      });
+      const response = await axios.post(
+        `${server.url}/api/v1/user/login`,
+        formData,
+        {
+          withCredentials: true,
+        }
+      );
       if (response.status == httpStatus.OK) {
         setIsAuthenticated(true);
         setUser(response.data.username);

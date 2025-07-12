@@ -99,6 +99,7 @@ export default function SignUp() {
               placeholder="Enter password"
               value={formData.password}
               onChange={fieldData}
+              autoComplete="current-password"
             />
           </div>
           <div className={styles.submit}>
