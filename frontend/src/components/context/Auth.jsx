@@ -1,7 +1,7 @@
 import axios from "axios";
 import httpStatus from "http-status";
 import { createContext, useContext, useEffect, useState } from "react";
-import { server } from "../../environment";
+import server from "../../environment";
 
 export const AuthContext = createContext();
 
