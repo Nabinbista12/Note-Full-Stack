@@ -21,7 +21,7 @@ app.use(
     // origin: "http://localhost:5173",
     origin: "https://note-full-stack-frontend.onrender.com",
     credentials: true,
-    methods: ["GET", "POST", "PATCH", "DELETE"],
+    // methods: ["GET", "POST", "PATCH", "DELETE"],
   })
 );
 
