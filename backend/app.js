@@ -18,9 +18,9 @@ const dbUrl = process.env.DB_URL;
 
 app.use(
   cors({
-    credentials: true,
     // origin: "http://localhost:5173",
     origin: "https://note-full-stack-frontend.onrender.com",
+    credentials: true,
     methods: ["GET", "POST", "PATCH", "DELETE"],
   })
 );

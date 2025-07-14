@@ -75,7 +75,7 @@ export const AuthProvider = ({ children }) => {
           withCredentials: true,
         }
       );
-      if (response.status == httpStatus.OK) {
+      if (response.status === 200 || response.status === 201) {
         setIsAuthenticated(true);
         setUser(response.data.username);
         setLoading(false);
@@ -102,7 +102,7 @@ export const AuthProvider = ({ children }) => {
         {},
         { withCredentials: true }
       );
-      if ((response.status = httpStatus.OK)) {
+      if ((response.status == httpStatus.OK)) {
         setIsAuthenticated(false);
         setUser("");
         return true;
