@@ -20,7 +20,7 @@ app.use(
   cors({
     credentials: true,
     // origin: "http://localhost:5173",
-    origin: "https://note-6m2e.onrender.com",
+    origin: "https://note-full-stack-frontend.onrender.com",
     methods: ["GET", "POST", "PATCH", "DELETE"],
   })
 );
