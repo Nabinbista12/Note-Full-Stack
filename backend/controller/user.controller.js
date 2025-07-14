@@ -71,7 +71,7 @@ const login = async (req, res) => {
 
       req.session.userId = user._id;
       req.session.username = user.username;
-      res.setHeader("Set-Cookie", "testCookie=helloWorld; Path=/; HttpOnly; Secure; SameSite=None");
+      console.log(req.session);
       return res
         .status(httpStatus.OK)
         .json({ message: "Welcome to the page.", username: user.username });
