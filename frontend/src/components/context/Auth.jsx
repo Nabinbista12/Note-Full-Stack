@@ -97,7 +97,11 @@ export const AuthProvider = ({ children }) => {
   const userLogout = async () => {
     setLoading(true);
     try {
-      const response = await axios.post(`${server.url}/api/v1/user/logout`);
+      const response = await axios.post(
+        `${server.url}/api/v1/user/logout`,
+        {},
+        { withCredentials: true }
+      );
       if ((response.status = httpStatus.OK)) {
         setIsAuthenticated(false);
         setUser("");

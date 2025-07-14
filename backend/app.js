@@ -6,6 +6,7 @@ import { connect } from "mongoose";
 import session from "express-session";
 import MongoStore from "connect-mongo";
 import cors from "cors";
+import cookieParser from "cookie-parser";
 
 import userRouter from "./routes/user.routes.js";
 import noteRouter from "./routes/note.routes.js";
@@ -65,6 +66,7 @@ const sessionOptions = {
   },
 };
 
+app.use(cookieParser());
 app.use(session(sessionOptions));
 
 app.use("/api/v1/user", userRouter);
