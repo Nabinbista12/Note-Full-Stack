@@ -11,9 +11,15 @@ const register = async (req, res) => {
     let userEmail = await User.findOne({ email: email });
 
     if (userName || userEmail) {
-        return res.status(httpStatus.CONFLICT).json({message: userName ? "username is already taken.": "email is already taken."})
+      return res
+        .status(httpStatus.CONFLICT)
+        .json({
+          message: userName
+            ? "username is already taken."
+            : "email is already taken.",
+        });
     }
-  
+
     password = await bcrypt.hash(password, 10);
 
     let user = new User({ name, username, email, password });
@@ -23,7 +29,9 @@ const register = async (req, res) => {
     req.session.username = result.username;
 
     console.log(result);
-    res.status(httpStatus.OK).json({ message: "User is saved" });
+    res
+      .status(httpStatus.OK)
+      .json({ message: "User is saved", username: result.username });
   } catch (err) {
     console.log(err);
     if (err.name == "ValidationError") {
@@ -66,7 +74,7 @@ const login = async (req, res) => {
 
       return res
         .status(httpStatus.OK)
-        .json({ message: "Welcome to the page." });
+        .json({ message: "Welcome to the page.", username: user.username });
     } else {
       return res
         .status(httpStatus.NOT_FOUND)
@@ -81,15 +89,16 @@ const login = async (req, res) => {
 };
 
 const logout = (req, res) => {
-    req.session.destroy((err) => {
-        if (err) {
-            console.log("Error while deleting the session:", err);
-            return res.status(httpStatus.INTERNAL_SERVER_ERROR).json({message: "Logout failed."})
-        }
-        res.clearCookie("connect.sid");
-        return res.status(httpStatus.OK).json({message: "Successfully logout."})
-    });
-    
-}
+  req.session.destroy((err) => {
+    if (err) {
+      console.log("Error while deleting the session:", err);
+      return res
+        .status(httpStatus.INTERNAL_SERVER_ERROR)
+        .json({ message: "Logout failed." });
+    }
+    res.clearCookie("connect.sid");
+    return res.status(httpStatus.OK).json({ message: "Successfully logout." });
+  });
+};
 
 export { register, login, logout };
