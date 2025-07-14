@@ -57,12 +57,12 @@ const sessionOptions = {
   store,
   secret: process.env.SECRET,
   resave: false,
-  saveUninitialized: true,
+  saveUninitialized: false,
   cookie: {
     maxAge: 1000 * 60 * 60 * 24,
     httpOnly: true,
-    // secure: true,
-    // sameSite: "None",
+    secure: true,
+    sameSite: "None",
   },
 };
 
