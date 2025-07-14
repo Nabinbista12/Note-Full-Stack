@@ -11,13 +11,11 @@ const register = async (req, res) => {
     let userEmail = await User.findOne({ email: email });
 
     if (userName || userEmail) {
-      return res
-        .status(httpStatus.CONFLICT)
-        .json({
-          message: userName
-            ? "username is already taken."
-            : "email is already taken.",
-        });
+      return res.status(httpStatus.CONFLICT).json({
+        message: userName
+          ? "username is already taken."
+          : "email is already taken.",
+      });
     }
 
     password = await bcrypt.hash(password, 10);
@@ -29,9 +27,20 @@ const register = async (req, res) => {
     req.session.username = result.username;
 
     // console.log(result);
-    res
-      .status(httpStatus.OK)
-      .json({ message: "User is saved", username: result.username });
+    // res
+    //   .status(httpStatus.OK)
+    //   .json({ message: "User is saved", username: result.username });
+
+    req.session.save((err) => {
+      if (err) {
+        console.log("Session save error:", err);
+        return res.status(500).json({ message: "Failed to save session." });
+      }
+
+      return res
+        .status(httpStatus.OK)
+        .json({ message: "Welcome to the page.", username: user.username });
+    });
   } catch (err) {
     console.log(err);
     if (err.name == "ValidationError") {
@@ -72,9 +81,19 @@ const login = async (req, res) => {
       req.session.userId = user._id;
       req.session.username = user.username;
       console.log(req.session);
-      return res
-        .status(httpStatus.OK)
-        .json({ message: "Welcome to the page.", username: user.username });
+      // return res
+      // .status(httpStatus.OK)
+      // .json({ message: "Welcome to the page.", username: user.username });
+      req.session.save((err) => {
+        if (err) {
+          console.log("Session save error:", err);
+          return res.status(500).json({ message: "Failed to save session." });
+        }
+
+        return res
+          .status(httpStatus.OK)
+          .json({ message: "Welcome to the page.", username: user.username });
+      });
     } else {
       return res
         .status(httpStatus.NOT_FOUND)
