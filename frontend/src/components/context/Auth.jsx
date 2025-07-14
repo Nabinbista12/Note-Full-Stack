@@ -16,7 +16,11 @@ export const AuthProvider = ({ children }) => {
 
   const checkAuthStatus = async () => {
     try {
-      const response = await axios.get(`${server.url}/api/v1/cookie/check`);
+      const response = await axios.get(
+        `${server.url}/api/v1/cookie/check`,
+        {},
+        { withCredentials: true }
+      );
       if (response.data.message) {
         setIsAuthenticated(true);
         setUser(response.data.username);
@@ -102,7 +106,7 @@ export const AuthProvider = ({ children }) => {
         {},
         { withCredentials: true }
       );
-      if ((response.status == httpStatus.OK)) {
+      if (response.status == httpStatus.OK) {
         setIsAuthenticated(false);
         setUser("");
         return true;
