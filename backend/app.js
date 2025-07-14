@@ -1,7 +1,7 @@
 import dotenv from "dotenv";
 dotenv.config();
 
-import express, { urlencoded } from "express";
+import express from "express";
 import { connect } from "mongoose";
 import session from "express-session";
 import MongoStore from "connect-mongo";
@@ -26,7 +26,7 @@ app.use(
 );
 
 app.use(express.json());
-app.use(urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true }));
 
 main()
   .then(() => {
@@ -61,8 +61,8 @@ const sessionOptions = {
   cookie: {
     maxAge: 1000 * 60 * 60 * 24,
     httpOnly: true,
-    secure: true,
-    sameSite: "None",
+    // secure: true,
+    // sameSite: "None",
   },
 };
 

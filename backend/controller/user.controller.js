@@ -28,7 +28,7 @@ const register = async (req, res) => {
     req.session.userId = result.id;
     req.session.username = result.username;
 
-    console.log(result);
+    // console.log(result);
     res
       .status(httpStatus.OK)
       .json({ message: "User is saved", username: result.username });
@@ -71,7 +71,6 @@ const login = async (req, res) => {
 
       req.session.userId = user._id;
       req.session.username = user.username;
-
       return res
         .status(httpStatus.OK)
         .json({ message: "Welcome to the page.", username: user.username });
