@@ -5,7 +5,7 @@ export default function Logo() {
   return (
     <>
       <div className={styles.logoContainer}>
-        <Link to="/home" className={styles.logo}>
+        <Link to="/" className={styles.logo}>
           NoteAll
         </Link>
       </div>

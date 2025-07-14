@@ -88,6 +88,7 @@ export default function SignUp() {
               placeholder="Enter email"
               value={formData.email}
               onChange={fieldData}
+              autoComplete="username"
             />
           </div>
           <div className={styles.field}>

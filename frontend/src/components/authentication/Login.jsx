@@ -52,6 +52,7 @@ export default function Login() {
               value={formData.username}
               onChange={onChangeValue}
               placeholder="Enter username"
+              autoComplete="username"
             />
           </div>
           <div className={styles.field}>
