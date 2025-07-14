@@ -16,10 +16,10 @@ const app = express();
 const port = process.env.PORT;
 const dbUrl = process.env.DB_URL;
 
-app.options("*", cors({
-  origin: "https://note-full-stack-frontend.onrender.com",
-  credentials: true,
-}));
+// app.options("/*", cors({
+//   origin: "https://note-full-stack-frontend.onrender.com",
+//   credentials: true,
+// }));
 
 app.use(
   cors({
