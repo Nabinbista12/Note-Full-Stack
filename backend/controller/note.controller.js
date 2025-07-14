@@ -4,14 +4,14 @@ import User from "../models/user.model.js";
 
 const getAllNotes = async (req, res) => {
   let userId = req.session.userId;
-  // console.log(req.session);
+  console.log(req.session);
 
-  // console.log(userId);
-  // console.log("Working");
+  console.log(userId);
+  console.log("Working");
 
   if (!userId) {
     return res
-      .status(httpStatus.NOT_FOUND)
+      .status(httpStatus.UNAUTHORIZED)
       .json({ message: "User not found, please login" });
   }
 
