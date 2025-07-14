@@ -49,7 +49,7 @@ const store = MongoStore.create({
   touchAfter: 24 * 3600,
 });
 
-store.on("error", () => {
+store.on("error", (err) => {
   console.log("Error in Mongo SESSION STORE", err);
 });
 
@@ -75,6 +75,10 @@ app.use("/api/v1/cookie", cookieRouter);
 
 app.get("/", (req, res) => {
   res.send("working");
+});
+
+app.get("/api/v1/note/test", (req, res) => {
+  res.json({ message: "Note route working!" });
 });
 
 const start = async () => {
