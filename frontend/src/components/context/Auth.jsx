@@ -2,6 +2,7 @@ import axios from "axios";
 import httpStatus from "http-status";
 import { createContext, useContext, useEffect, useState } from "react";
 import server from "../../environment";
+axios.defaults.withCredentials = true;
 
 export const AuthContext = createContext();
 
@@ -18,7 +19,6 @@ export const AuthProvider = ({ children }) => {
     try {
       const response = await axios.get(
         `https://note-full-stack-9lb9.onrender.com/api/v1/cookie/check`,
-        {},
         { withCredentials: true }
       );
       if (response.data.message) {
