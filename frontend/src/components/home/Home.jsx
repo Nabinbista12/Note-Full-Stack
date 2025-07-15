@@ -15,7 +15,7 @@ export default function Home() {
   useEffect(() => {
     const getAllNotes = async () => {
       try {
-        const res = await axios.get(`${server.url}/api/v1/note`, {
+        const res = await axios.get(`https://note-full-stack-9lb9.onrender.com/api/v1/note`, {
           withCredentials: true,
         });
         // console.log((res.data.notes).reverse());
@@ -30,7 +30,7 @@ export default function Home() {
   const deleteNote = async (id) => {
     try {
       console.log(id);
-      const res = await axios.delete(`${server.url}/api/v1/note/delete/${id}`, {
+      const res = await axios.delete(`https://note-full-stack-9lb9.onrender.com/api/v1/note/delete/${id}`, {
         withCredentials: true,
       });
       console.log(res);

@@ -22,9 +22,12 @@ export default function View() {
   useEffect(() => {
     let fetchNote = async () => {
       try {
-        let response = await axios.get(`${server.url}/api/v1/note/view/${id}`, {
-          withCredentials: true,
-        });
+        let response = await axios.get(
+          `https://note-full-stack-9lb9.onrender.com/api/v1/note/view/${id}`,
+          {
+            withCredentials: true,
+          }
+        );
         console.log(response.data.notes);
         setNote({
           _id: response.data.notes._id,
@@ -61,8 +64,9 @@ export default function View() {
     e.preventDefault();
     try {
       let response = await axios.patch(
-        `${server.url}/api/v1/note/view/${id}/edit`,
-        note
+        `https://note-full-stack-9lb9.onrender.com/api/v1/note/view/${id}/edit`,
+        note,
+        { withCredentials: true }
       );
       console.log(response);
       alert("Successfully edited");

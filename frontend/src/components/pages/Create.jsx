@@ -25,7 +25,7 @@ export default function Create() {
     e.preventDefault();
     try {
       console.log(formData.notes);
-      await axios.post(`${server.url}/api/v1/note/create`, formData, {
+      await axios.post(`https://note-full-stack-9lb9.onrender.com/api/v1/note/create`, formData, {
         withCredentials: true,
       });
       navigate("/home");

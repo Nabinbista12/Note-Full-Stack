@@ -17,7 +17,7 @@ export const AuthProvider = ({ children }) => {
   const checkAuthStatus = async () => {
     try {
       const response = await axios.get(
-        `${server.url}/api/v1/cookie/check`,
+        `https://note-full-stack-9lb9.onrender.com/api/v1/cookie/check`,
         {},
         { withCredentials: true }
       );
@@ -41,7 +41,7 @@ export const AuthProvider = ({ children }) => {
     setLoading(true);
     try {
       const response = await axios.post(
-        `${server.url}/api/v1/user/register`,
+        `https://note-full-stack-9lb9.onrender.com/api/v1/user/register`,
         formData,
         {
           withCredentials: true,
@@ -73,7 +73,7 @@ export const AuthProvider = ({ children }) => {
     setLoading(true);
     try {
       const response = await axios.post(
-        `${server.url}/api/v1/user/login`,
+        `https://note-full-stack-9lb9.onrender.com/api/v1/user/login`,
         formData,
         {
           withCredentials: true,
@@ -102,7 +102,7 @@ export const AuthProvider = ({ children }) => {
     setLoading(true);
     try {
       const response = await axios.post(
-        `${server.url}/api/v1/user/logout`,
+        `https://note-full-stack-9lb9.onrender.com/api/v1/user/logout`,
         {},
         { withCredentials: true }
       );
