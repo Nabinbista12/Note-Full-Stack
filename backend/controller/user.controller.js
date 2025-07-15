@@ -78,6 +78,7 @@ const login = async (req, res) => {
           .json({ message: "Wrong password. Please Enter correct password." });
       }
 
+      req.session.isAuthenticated = true;
       req.session.userId = user._id;
       req.session.username = user.username;
       console.log(req.session);
@@ -92,7 +93,11 @@ const login = async (req, res) => {
 
         return res
           .status(httpStatus.OK)
-          .json({ message: "Welcome to the page.", username: user.username });
+          .json({
+            message: "Welcome to the page.",
+            username: user.username,
+            userId: user.id,
+          });
       });
     } else {
       return res

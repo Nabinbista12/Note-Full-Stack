@@ -26,7 +26,8 @@ app.use(
     // origin: "http://localhost:5173",
     origin: "https://note-full-stack-frontend.onrender.com",
     credentials: true,
-    // methods: ["GET", "POST", "PATCH", "DELETE"],
+    methods: ["GET", "POST", "PATCH", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
 
@@ -63,17 +64,27 @@ const sessionOptions = {
   store,
   secret: process.env.SECRET,
   resave: false,
-  saveUninitialized: false,
+  saveUninitialized: true,
   cookie: {
     maxAge: 1000 * 60 * 60 * 24,
     httpOnly: true,
-    secure: true,
-    sameSite: "None",
+    secure: process.env.NODE_ENV === 'production',
+    sameSite: process.env.NODE_ENV === 'production' ? 'None' : 'Lax',
   },
+  name: "connect.sid",
 };
 
 app.use(cookieParser());
 app.use(session(sessionOptions));
+
+app.use((req, res, next) => {
+  if (!req.session) {
+    console.log("No session found, creating new session");
+  }
+  console.log("Session ID:", req.session.user_id);
+  console.log("Session ID:", req.session);
+  next();
+});
 
 app.use("/api/v1/user", userRouter);
 app.use("/api/v1/note", noteRouter);
